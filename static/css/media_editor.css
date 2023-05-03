@@ -1,0 +1,52 @@
+* {
+	margin: 0;
+	background-color: #444;
+	color: yellow;
+}
+
+.body {
+	display: grid;
+	grid-template-columns: 2fr 1fr 1fr;
+	height: 90vh;
+}
+
+.body div {
+	margin: 10px;
+}
+
+.media_object {
+	height: 90vh;
+}
+
+.info {
+	height: 100%;
+	width: 100%;
+}
+
+.info ul {
+	padding-left: 0;
+}
+
+.info li {
+	margin-bottom: 10px;
+	list-style: none;
+	margin-left: 0;
+}
+
+input.tags {
+	margin-bottom: 15px;
+}
+
+input.submit {
+	float: right;
+	margin-right: 20px;
+}
+
+.tag {
+	display: inline-block;
+	margin: 2.5px;
+}
+
+.in_media {
+	color: cyan;
+}

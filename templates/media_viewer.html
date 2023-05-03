@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	{% block head %}
+		<head>
+			<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/media_viewer.css') }}">
+			<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/header.css') }}">
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+		</head>
+	{% endblock %}
+
+	{% block body %}
+		<body>
+			<header>
+				<a href="http://127.0.0.1:5000/list/{{ list_name }}/">{{ list_name.title() }}</a>
+				<a href="http://127.0.0.1:5000/list/{{ list_name }}/random/">Random Media</a>
+			</header>
+
+			<div class="body">
+				<div class="media">
+					{% for img in [".jpg", ".jpeg", ".png", ".gif"] %}
+						{% if img in data["location"][-6:] %}
+							<img class="media_object" src="{{ url_for('static', filename=data['location']) }}">
+						{% endif %}
+					{% endfor %}
+				</div>
+
+				
+				<div class="info">
+					<ul>
+						<li class="edit"><a href="edit/">Edit</a></li>
+						{% if data["url"] != "" %}
+							<li class="url"><a href="{{ data['url'] }}">Media URL</a></li>
+						{% endif %}
+						<li class="date_posted">Date: {{ data["date"] }}</li>
+
+						<li class="posted_by">Uploader: {{ data["uploader"] }}</li>
+
+						{% if data["favorite"] %}
+							<li class="pink-text">Favorite</li>
+						{% endif %}
+
+						<li class="involved">Others involved:</li>
+						{% for included in data["included"] %}
+							<li class="included">{{ included }}</li>
+						{% endfor %}
+					</ul>
+				</div>
+
+
+				<div class="tags">
+					{% for tag in data["tags"] %}
+						<p class="tag in_media">{{ tag }}</p>
+					{% endfor %}
+				</div>
+			</div>
+
+			<footer>
+				<div class="self">
+					
+				</div>
+
+				<div class="involved">
+					
+				</div>
+			</footer>
+			
+		</body>
+	{% endblock %}
+</html>

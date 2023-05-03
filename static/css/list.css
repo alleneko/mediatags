@@ -1,0 +1,38 @@
+* {
+	margin: 0;
+	background-color: #555;
+	color: yellow;
+}
+
+.content {
+	display: grid;
+	grid-template-columns: 3fr 1fr;
+	height: 90vh;
+}
+
+.media {
+	width: 20%;
+	display: inline-block;
+}
+
+.file {
+	width: 100%;
+}
+
+.media label {
+	width: 100%;
+	overflow-wrap: break-word;
+}
+
+.tag {
+	display: inline-block;
+}
+
+ul {
+	list-style: none;
+	list-style: none;
+}
+
+.yellow-border {
+	border: 3px yellow solid;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/header.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/list.css') }}">
+</head>
+<body>
+	<header>
+		<a href="http://127.0.0.1:5000/list/{{ list_name }}/">{{ list_name.title() }}</a>
+		<a href="http://127.0.0.1:5000/list/{{ list_name }}/random/">Random Media</a>
+	</header>
+	<div class="content">
+		<div class="media_list">
+			{% for item in tagged %}
+				<div class="media yellow-border">
+					<a href="{{ item }}"><img class="file" src="{{ url_for('static', filename=tagged[item]['location']) }}"></a>
+					<label>{{ item }}</label>
+				</div>
+			{% endfor %}
+
+			{% for item in data %}
+				<div class="media">
+					<a href="{{ item }}"><img class="file" src="{{ url_for('static', filename=data[item]['location']) }}"></a>
+					<label>{{ item }}</label>
+				</div>
+			{% endfor %}
+			
+		</div>
+
+		<div class="tags">
+			<ul>
+				{% for tag in tags %}
+					<li class="tag">{{ tag }} <a href="+{{ tag }}"> (+) </a><a href="-{{ tag }}"> (-) </a></li>
+					<br>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

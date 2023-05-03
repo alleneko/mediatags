@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	{% block head %}
+		<head>
+			<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/media_editor.css') }}">
+			<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/header.css') }}">
+			<meta charset="utf-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+		</head>
+	{% endblock %}
+
+	{% block body %}
+		<body>
+			<header>
+				<a href="http://127.0.0.1:5000/list/{{ list_name }}/">{{ list_name.title() }}</a>
+				<a href="http://127.0.0.1:5000/list/{{ list_name }}/random/">Random Media</a>
+			</header>
+			<form method="post">
+				<div class="body">
+					<div class="media">
+						{% for img in [".jpg", ".jpeg", ".png", ".gif"] %}
+							{% if img in data["location"][-6:] %}
+								<img class="media_object" src="{{ url_for('static', filename=data['location']) }}">
+							{% endif %}
+						{% endfor %}
+					</div>
+
+					
+					<div class="info">
+						<ul>
+							<li class="url">URL: <input class="url" type="text" name="url"></li>
+
+							<li class="date_posted">Date: <input class="date_input" type="date" name="date"></li>
+
+							<li class="posted_by">Uploader: <input class="uploader" type="text" name="uploader" maxlength="30"></li>
+							{% if data["favorite"] %}
+								<li class="favorite">Favorite <input class="favorited" checked type="checkbox" name="favorite"></li>
+							{% else %}
+								<li class="favorite">Favorite <input class="favorited" type="checkbox" name="favorite"></li>
+							{% endif %}
+
+							<li class="included">People included: <input class="include" type="text" name="included"></li>
+						</ul>
+						<input type="submit" name="submit" class="submit" value="Submit">
+					</div>
+
+
+					<div class="tags">
+						Tags:
+						<input class="tags" name="tags" type="text">
+						<br>
+						{% for tag in data["tags"] %}
+							<p class="tag in_media">{{ tag }}</p>
+						{% endfor %}
+
+						{% for tag in tags %}
+							{% if tag not in data["tags"] %}
+								<p class="tag">{{ tag }}</p>
+							{% endif %}
+						{% endfor %}
+					</div>
+				</div>
+
+				<footer>
+					<div class="self">
+						
+					</div>
+
+					<div class="involved">
+						
+					</div>
+				</footer>
+			</form>
+			
+		</body>
+	{% endblock %}
+</html>
