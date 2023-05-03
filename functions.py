@@ -42,10 +42,13 @@ def update_json(data, name, form, element):
 	return data[name][element]
 
 if "add_new" in sys.argv:
-	if "art.json" in os.listdir():
-		data = open_json("art")
-		data = filenames_to_json("art", data)
-	else:
-		data = filenames_to_json("art")
+	if "list" not in os.listdir("static"):
+		os.mkdir("static/list")
+	for media_list in os.listdir("static/list"):
+		if media_list.lower() + ".json" in os.listdir():
+			data = open_json(media_list.lower())
+			data = filenames_to_json(media_list.lower(), data)
+		else:
+			data = filenames_to_json(media_list.lower())
 
-	save_json("art", data)
+		save_json(media_list.lower(), data)
